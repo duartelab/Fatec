@@ -2,14 +2,24 @@ h1{
     color:blueviolet;
     background-color: bisque;
     text-align: center;
-
-
-
-
-
 }
 h2{
     color:palevioletred;
     background-color: aqua;
     text-align: center;
+}
+.Título{
+    color:brown;
+    background-color: yellow;
+}
+#descricao{
+    font-size: 45px;
+    text-align: center;
+}
+nav a{
+    color:red
+}
+*{
+    margin: 0;
+    padding: 0;
 }
