@@ -1,0 +1,21 @@
+h1{
+    font-family: 'Arial', sans-serif;
+    color: #003d728b;
+    background-color: rgb(250, 209, 160);
+    text-align: center;}
+.tabela-produtos, 
+.tabela-produtos th, 
+.tabela-produtos td {              /* Aplica o estilo a todas as células da tabela, incluindo cabeçalho e corpo */
+  border: 1px solid #cccccc;   /* Linha contínua cinza de 1px */
+  padding: 12px;                /* Espaçamento interno das células */
+  text-align: center;           /* Centraliza o texto horizontalmente */
+  vertical-align: middle;       /* Centraliza o conteúdo verticalmente */
+  font-size: 14px;
+  background-color: #f4f4f4;
+  font-size: 16px;                 /* Define o tamanho da fonte */             
+  font-weight: bold;            /* Deixa o texto em negrito */
+  color:rgb(86, 54, 227);
+}
+.tabela-produtos th {
+  background-color: #8cd1ff;    /* Cor de fundo diferente para o cabeçalho, deixar separado para não afetar todas as células */     
+}
