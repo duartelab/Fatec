@@ -16,14 +16,14 @@ turma: WEBI-ISW028-A
     <title>Pagina de login</title>
 </head>
 <body>
-    <form action="#",name="loginForm" onsubmit="return validateForm()", method="post">
+    <form id="loginForm" action="#" id="loginForm" onsubmit="return validateForm()" method="get">
         <div class="email">
-           
-            <label for="email">Digite email</label>
+            <h1>Formulário de Login</h1>
+            <label for="email">Digite email abaixo:</label>
             <input type="email" id="email" name="email" required>
         </div>
         <div class="password">
-            <label for="password">Digite senha</label>
+            <label for="password">Digite senha abaixo:</label>
             <input type="password" id="password" name="password" required>
         </div>
 
