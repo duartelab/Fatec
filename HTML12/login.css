@@ -1,0 +1,25 @@
+/*<!--
+descricao: Exercicio aula 12.
+nome_arquivo: login.html
+nome_exercicio: Exercício 12 - Formulário de Login
+nome_aluno: Raquel Duarte
+email_aluno: raquel.duarte@aluno.cps.sp.gov.br
+turma: WEBI-ISW028-A
+-->*/
+
+.email{
+    font-family: Arial, sans-serif;
+    color: #003d728b;
+    background-color: #e5eafa;
+    text-align: center;
+    border-style: dotted;
+    
+}
+.password{
+    font-family: Arial, sans-serif;
+    color: #003d728b;
+    background-color: #e5eafa;
+    text-align: center;
+    
+    border-style: dotted;
+}
