@@ -16,10 +16,12 @@ turma: WEBI-ISW028-A
     text-align: center;
     box-sizing: border-box;
     border-radius: 10px;
-    max-width: 400px;
-    border: 12px double rgb(140, 10, 10);
+    max-width: 300px;
+    border: 15px double rgb(140, 10, 10);
     padding: 30px;
     margin: 100px;
+    display: flex;
+    flex-direction: column;
 }
 h1{
     font-family: Arial, sans-serif;
@@ -31,7 +33,7 @@ h1{
 
 .email{
     font-family: Arial, sans-serif;
-    color: #003d728b;
+    color: #2d6807cb;
     background-color: #e5eafa;
     text-align: center;
   

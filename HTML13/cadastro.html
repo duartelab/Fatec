@@ -1,0 +1,57 @@
+<!--
+descricao: Exercicio aula 13.
+nome_arquivo: cadastro.html
+nome_exercicio: Exercício 13 - Página de Cadastro
+nome_aluno: Raquel Duarte
+email_aluno: raquel.duarte@aluno.cps.sp.gov.br
+turma: WEBI-ISW028-A
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Formulário de cadastro</title>
+</head>
+<body>
+    <form id="loginForm" action="#" id="loginForm" onsubmit="return validateForm()" method="get">
+        <div class="email">
+            <h1>Cadastre-se para acesso ao sistema </h1>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+        </div>
+        <div class="form-group">
+            <label for="confirmar-senha">Confirmar Senha:</label>
+            <input type="password" id="confirmar-senha" name="confirmar-senha" required>
+        </div>
+        <div class="form-group">
+            <label for="datanasc">Data de Nascimento:</label>
+            <input type="date" id="datanasc" name="datanasc" required>
+        </div>
+        <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" required>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Criar conta</button>
+        </div>
+        <div class="form-group">
+            <button type="reset">Limpar dados</button>
+        </div>
+        <div class="form-group">
+            <a href="perfil.html">Já possui uma conta? Faça login</a>
+
+                
+        </form>
+    <script src="login.js"></script>
+</body>
+</html>

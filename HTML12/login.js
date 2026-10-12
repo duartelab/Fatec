@@ -9,7 +9,7 @@ turma: WEBI-ISW028-A
 
 const name = document.getElementById("email");
 const password = document.getElementById("password");
-const form = document.querySelector("form");
+const form = document.querySelector("form");text-align; center;
 
 form.addEventListener("submit", (e) => {
     let enviarForm = true;
