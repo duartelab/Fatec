@@ -23,6 +23,18 @@ Front-end de uma agenda de compromissos de uma colaboradora de uma empresa de al
 ## Protótipo (Figma)
 Imagens em `docs/prototipo-v2/`: login, perfil e consulta no desktop (1440 × 900) e no celular (390 × 844).
 
+**Desktop**
+
+| Login | Perfil | Consulta |
+|---|---|---|
+| ![Login no desktop](docs/prototipo-v2/login-desktop.png) | ![Perfil no desktop](docs/prototipo-v2/perfil-desktop.png) | ![Consulta no desktop](docs/prototipo-v2/consulta-desktop.png) |
+
+**Celular**
+
+| Login | Perfil | Consulta |
+|---|---|---|
+| <img src="docs/prototipo-v2/login-mobile.png" alt="Login no celular" width="220"> | <img src="docs/prototipo-v2/perfil-mobile.png" alt="Perfil no celular" width="220"> | <img src="docs/prototipo-v2/consulta-mobile.png" alt="Consulta no celular" width="220"> |
+
 ## Como abrir
 Abra `index.html` no navegador. Login de demonstração: `helena.prado@camposereno.com` / `agenda123`.
 
