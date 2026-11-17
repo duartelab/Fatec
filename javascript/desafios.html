@@ -1,0 +1,248 @@
+<!--
+descricao: Dez desafios de JavaScript com formulários: contador, senhas, total do pedido, JSON, máscara de telefone, selects dependentes, tags, maioridade, selecionar todos e tema salvo.
+nome_arquivo: desafios.html
+nome_exercicio: Formulários JavaScript
+nome_aluno: Raquel S.R. Duarte
+email_aluno: raquel.duarte@aluno.cps.sp.gov.br
+turma: WEBI-ISW028-A
+-->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desafios de JavaScript - Formulários</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 720px; margin: 20px auto; padding: 0 12px; background: #fff; color: #222; }
+  body.dark-theme { background: #1e1e2e; color: #f1f1f1; }
+  fieldset { margin-bottom: 20px; border: 1px solid #999; border-radius: 6px; }
+  legend { font-weight: bold; }
+  label, input, select, textarea, button { margin: 4px 0; }
+  .erro { color: red; }
+  .ok { color: green; }
+  .badge { display: inline-block; background: #cfe3ff; color: #123; padding: 3px 8px; margin: 3px; border-radius: 12px; }
+  .badge button { border: 0; background: none; cursor: pointer; font-weight: bold; }
+  pre { background: #eee; color: #222; padding: 8px; }
+</style>
+</head>
+<body>
+<h1>Desafios de JavaScript</h1>
+
+<!-- 1 -->
+<fieldset id="d1"><legend>1) Contador de comentário</legend>
+  <label for="comentario">Comentário</label><br>
+  <textarea id="comentario" rows="4" cols="50"></textarea><br>
+  <span id="contador">140</span> caracteres restantes<br>
+  <button id="enviarComentario">Enviar</button>
+</fieldset>
+
+<!-- 2 -->
+<fieldset id="d2"><legend>2) Confirmar senha</legend>
+  <input type="password" id="senha" placeholder="Senha"><br>
+  <input type="password" id="senha2" placeholder="Confirme sua senha"><br>
+  <span id="msgSenha"></span><br>
+  <button id="cadastrar" disabled>Cadastrar</button>
+</fieldset>
+
+<!-- 3 -->
+<fieldset id="d3"><legend>3) Pedido</legend>
+  <select id="produto">
+    <option value="100">Teclado - R$ 100</option>
+    <option value="50">Mouse - R$ 50</option>
+    <option value="800">Monitor - R$ 800</option>
+  </select>
+  <input type="number" id="qtd" value="1" min="0">
+  <p id="total">Total: R$ 0,00</p>
+</fieldset>
+
+<!-- 4 -->
+<fieldset id="d4"><legend>4) Cadastro de produto</legend>
+  <form id="formProduto">
+    <input id="pNome" placeholder="Nome"><br>
+    <input id="pCategoria" placeholder="Categoria"><br>
+    <input id="pPreco" type="number" step="0.01" placeholder="Preço"><br>
+    <button type="submit">Gerar JSON</button>
+  </form>
+  <pre id="saidaJson"></pre>
+</fieldset>
+
+<!-- 5 -->
+<fieldset id="d5"><legend>5) Telefone</legend>
+  <input id="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="15">
+</fieldset>
+
+<!-- 6 -->
+<fieldset id="d6"><legend>6) Departamento e funcionário</legend>
+  <select id="depto">
+    <option value="">Escolha...</option>
+    <option value="TI">TI</option>
+    <option value="RH">RH</option>
+  </select>
+  <select id="func"></select>
+</fieldset>
+
+<!-- 7 -->
+<fieldset id="d7"><legend>7) Habilidades</legend>
+  <input id="habilidade" placeholder="Habilidade">
+  <button id="addHab" type="button">+</button>
+  <div id="tags"></div>
+</fieldset>
+
+<!-- 8 -->
+<fieldset id="d8"><legend>8) Maioridade</legend>
+  <input type="date" id="nasc">
+  <span id="avisoIdade" class="erro"></span><br>
+  <button id="finalizar" disabled>Finalizar Cadastro</button>
+</fieldset>
+
+<!-- 9 -->
+<fieldset id="d9"><legend>9) Selecionar todos</legend>
+  <label><input type="checkbox" id="todos"> Selecionar Todos</label><br>
+  <label><input type="checkbox" class="item"> Item 1</label><br>
+  <label><input type="checkbox" class="item"> Item 2</label><br>
+  <label><input type="checkbox" class="item"> Item 3</label><br>
+  <label><input type="checkbox" class="item"> Item 4</label><br>
+  <label><input type="checkbox" class="item"> Item 5</label>
+</fieldset>
+
+<!-- 10 -->
+<fieldset id="d10"><legend>10) Configurações de perfil</legend>
+  <label><input type="checkbox" id="tema"> Modo escuro</label>
+</fieldset>
+
+<script>
+// 1) contador de caracteres
+const LIMITE = 140;
+const comentario = document.getElementById("comentario");
+const contador = document.getElementById("contador");
+const btnComentario = document.getElementById("enviarComentario");
+comentario.maxLength = LIMITE; // impede digitar além do limite
+comentario.addEventListener("input", function () {
+  const restantes = LIMITE - comentario.value.length;
+  contador.textContent = restantes;
+  contador.style.color = restantes === 0 ? "red" : "";
+  btnComentario.disabled = restantes === 0;
+});
+
+// 2) senhas
+const senha = document.getElementById("senha");
+const senha2 = document.getElementById("senha2");
+const msgSenha = document.getElementById("msgSenha");
+const btnCadastrar = document.getElementById("cadastrar");
+function conferirSenhas() {
+  const iguais = senha.value === senha2.value && senha2.value !== "";
+  msgSenha.textContent = iguais ? "As senhas coincidem" : "As senhas são diferentes";
+  msgSenha.className = iguais ? "ok" : "erro";
+  btnCadastrar.disabled = !iguais;
+}
+senha2.addEventListener("input", conferirSenhas);
+senha.addEventListener("input", function () { if (senha2.value) conferirSenhas(); });
+
+// 3) total do pedido
+const produto = document.getElementById("produto");
+const qtd = document.getElementById("qtd");
+const total = document.getElementById("total");
+function calcularTotal() {
+  const valor = Number(produto.value) * Number(qtd.value || 0);
+  total.textContent = "Total: " + valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
+produto.addEventListener("change", calcularTotal);
+qtd.addEventListener("input", calcularTotal);
+calcularTotal();
+
+// 4) JSON
+document.getElementById("formProduto").addEventListener("submit", function (event) {
+  event.preventDefault();
+  const obj = {
+    nome: document.getElementById("pNome").value,
+    categoria: document.getElementById("pCategoria").value,
+    preco: Number(document.getElementById("pPreco").value)
+  };
+  const json = JSON.stringify(obj, null, 2);
+  console.log(json);
+  document.getElementById("saidaJson").textContent = json;
+});
+
+// 5) telefone
+document.getElementById("telefone").addEventListener("keyup", function () {
+  let n = this.value.replace(/\D/g, "").slice(0, 11);
+  n = n.replace(/^(\d{2})(\d)/, "($1) $2");
+  n = n.replace(/(\d{5})(\d{1,4})$/, "$1-$2");
+  this.value = n;
+});
+
+// 6) selects dependentes
+const funcionarios = { TI: ["Allan", "Beatriz", "Carlos"], RH: ["Daniela", "Eduardo"] };
+document.getElementById("depto").addEventListener("change", function () {
+  const func = document.getElementById("func");
+  func.innerHTML = "";
+  (funcionarios[this.value] || []).forEach(function (nome) {
+    const op = document.createElement("option");
+    op.textContent = nome;
+    func.appendChild(op);
+  });
+});
+
+// 7) tags
+const campoHab = document.getElementById("habilidade");
+function adicionarTag() {
+  const texto = campoHab.value.trim();
+  if (!texto) return;
+  const tag = document.createElement("span");
+  tag.className = "badge";
+  tag.textContent = texto + " ";
+  const x = document.createElement("button");
+  x.type = "button";
+  x.textContent = "X";
+  x.addEventListener("click", function () { tag.remove(); });
+  tag.appendChild(x);
+  document.getElementById("tags").appendChild(tag);
+  campoHab.value = "";
+}
+document.getElementById("addHab").addEventListener("click", adicionarTag);
+campoHab.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") { e.preventDefault(); adicionarTag(); }
+});
+
+// 8) maioridade
+document.getElementById("nasc").addEventListener("change", function () {
+  const aviso = document.getElementById("avisoIdade");
+  const btn = document.getElementById("finalizar");
+  if (!this.value) { aviso.textContent = ""; btn.disabled = true; return; }
+  const nasc = new Date(this.value + "T00:00:00");
+  const hoje = new Date();
+  let idade = hoje.getFullYear() - nasc.getFullYear();
+  const jaFez = hoje.getMonth() > nasc.getMonth() ||
+    (hoje.getMonth() === nasc.getMonth() && hoje.getDate() >= nasc.getDate());
+  if (!jaFez) idade--;
+  const maior = idade >= 18;
+  aviso.textContent = maior ? "" : "Apenas para maiores de idade";
+  btn.disabled = !maior;
+});
+
+// 9) selecionar todos
+const todos = document.getElementById("todos");
+const itens = document.querySelectorAll(".item");
+todos.addEventListener("change", function () {
+  itens.forEach(function (i) { i.checked = todos.checked; });
+});
+itens.forEach(function (i) {
+  i.addEventListener("change", function () {
+    todos.checked = Array.from(itens).every(function (x) { return x.checked; });
+  });
+});
+
+// 10) tema escuro salvo
+const tema = document.getElementById("tema");
+function aplicarTema(escuro) {
+  document.body.classList.toggle("dark-theme", escuro);
+  tema.checked = escuro;
+}
+aplicarTema(localStorage.getItem("tema") === "escuro");
+tema.addEventListener("change", function () {
+  aplicarTema(tema.checked);
+  localStorage.setItem("tema", tema.checked ? "escuro" : "claro");
+});
+</script>
+</body>
+</html>
